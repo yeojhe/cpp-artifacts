@@ -1,0 +1,29 @@
+
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build cmake clang clang-tidy clang-format lld g++
+      - name: Configure (asan)
+        run: cmake --preset asan -S .
+      - name: Format check
+        run: |
+          find src tests bench -name '*.h' -o -name '*.cpp' | xargs clang-format --dry-run --Werror
+      - name: Build
+        run: cmake --build build/asan -j
+      - name: Test
+        run: ctest --test-dir build/asan --output-on-failure
+      - name: Run clang-tidy
+        run: cmake --build build/asan --target cpp_lab || true
+      - name: Run benchmarks
+        run: cmake --build build/asan --target perf

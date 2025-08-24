@@ -1,0 +1,25 @@
+
+function(apply_sanitizers target)
+  if (ENABLE_ASAN)
+    target_compile_options(${target} PRIVATE -fsanitize=address -fno-omit-frame-pointer)
+    target_link_options(${target} PRIVATE -fsanitize=address -fno-omit-frame-pointer)
+  endif()
+
+  if (ENABLE_UBSAN)
+    target_compile_options(${target} PRIVATE -fsanitize=undefined -fno-omit-frame-pointer)
+    target_link_options(${target} PRIVATE -fsanitize=undefined -fno-omit-frame-pointer)
+  endif()
+
+  if (ENABLE_TSAN)
+    target_compile_options(${target} PRIVATE -fsanitize=thread -fno-omit-frame-pointer)
+    target_link_options(${target} PRIVATE -fsanitize=thread -fno-omit-frame-pointer)
+  endif()
+
+  if (ENABLE_LTO AND NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
+    include(CheckIPOSupported)
+    check_ipo_supported(RESULT supported OUTPUT error)
+    if (supported)
+      set_property(TARGET ${target} PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+    endif()
+  endif()
+endfunction()
