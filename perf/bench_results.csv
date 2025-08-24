@@ -1,6 +1,6 @@
 {
   "context": {
-    "date": "2025-08-24T13:23:55+01:00",
+    "date": "2025-08-24T14:35:26+01:00",
     "host_name": "jharchhp",
     "executable": "/home/yeoj/code/artifacts/cpp-am/build/asan/hashing_bench",
     "num_cpus": 8,
@@ -32,7 +32,7 @@
         "num_sharing": 8
       }
     ],
-    "load_avg": [0.534668,0.624512,0.681152],
+    "load_avg": [2.16699,2.09131,1.59033],
     "library_version": "v0.0.0",
     "library_build_type": "release",
     "json_schema_version": 1
@@ -47,9 +47,9 @@
       "repetitions": 1,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 24243248,
-      "real_time": 2.8495726026486381e+01,
-      "cpu_time": 2.8451708162206650e+01,
+      "iterations": 10000000,
+      "real_time": 5.2374142800181289e+01,
+      "cpu_time": 5.2176088800000009e+01,
       "time_unit": "ns"
     }
   ]

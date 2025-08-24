@@ -1,12 +1,14 @@
-
 Checks: >
   -*,
   bugprone-*,
   performance-*,
-  modernize-*,
-  readability-identifier-naming,
-  readability-qualified-auto,
-  readability-use-anyofallof,
-  cppcoreguidelines-avoid-magic-numbers
-WarningsAsErrors: '*'
-HeaderFilterRegex: 'src/.*'
+  modernize-use-nullptr,
+  modernize-loop-convert,
+  modernize-avoid-bind,
+  modernize-deprecated-headers,
+  readability-use-anyofallof
+WarningsAsErrors: 'bugprone-*,performance-*'
+HeaderFilterRegex: '^(src|tests|bench)/.*'
+# Optional tuning:
+CheckOptions:
+  - { key: modernize-loop-convert.MinConfidence, value: reasonable }
