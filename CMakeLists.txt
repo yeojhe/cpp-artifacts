@@ -72,6 +72,7 @@ apply_sanitizers(hashing_bench)
 
 # Perf helper target
 add_custom_target(perf
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/perf
     COMMAND hashing_bench --benchmark_format=csv --benchmark_out=${CMAKE_SOURCE_DIR}/perf/bench_results.csv
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     COMMENT "Running benchmarks and saving CSV to ${CMAKE_SOURCE_DIR}/perf/bench_results.csv"
