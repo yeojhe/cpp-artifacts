@@ -72,7 +72,12 @@ apply_sanitizers(hashing_bench)
 
 # Perf helper target
 add_custom_target(perf
-    COMMAND hashing_bench --benchmark_format=csv --benchmark_out=perf/bench_results.csv
+    COMMAND hashing_bench --benchmark_format=csv --benchmark_out=${CMAKE_SOURCE_DIR}/perf/bench_results.csv
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    COMMENT "Running benchmarks and saving CSV to perf/bench_results.csv"
+    COMMENT "Running benchmarks and saving CSV to ${CMAKE_SOURCE_DIR}/perf/bench_results.csv"
 )
+
+enable_tidy(hashing)
+enable_tidy(cpp_lab)
+enable_tidy(hashing_tests)
+enable_tidy(hashing_bench)
